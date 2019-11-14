@@ -1,13 +1,17 @@
 import React from 'react';
 import Header from './Header/Header';
-import Dadata from './Dadata/Dadata';
+import Layout from './Layout/Layout';
+import Main from './Main/Main';
 import styles from './App.module.scss';
 
 function App() {
   return (
     <div className={styles.App}>
       <Header/>
-      <Dadata title='Организация или ИП'/>
+      <Layout>
+        <Main/>
+      </Layout>
+      {/* <Dadata title='Организация или ИП'/> */}
     </div>
   );
 }

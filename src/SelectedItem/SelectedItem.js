@@ -32,7 +32,7 @@ const selectedItem = (props) => {
                 </div>
             </div>
         </div>
-        <Button actionType={props.buttonType} onClickHandler={props.onClickHandler(props.item)}>Сохранить</Button>
+        <Button actionType={props.buttonType} onClickHandler={props.onClickHandler(props.item)}>{props.buttonType==='save' ? 'Сохранить' : 'Сохраненно'}</Button>
     </div>
     )
 }

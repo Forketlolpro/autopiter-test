@@ -3,6 +3,7 @@ import Dadata from '../Dadata/Dadata';
 import {connect} from 'react-redux';
 import * as actions from '../Store/actions';
 import SelectedItem from '../SelectedItem/SelectedItem';
+import SelectItemsList from '../SelectItemsList/SelectItemsList';
 import styles from './Main.module.scss'
 
 class Main extends Component{
@@ -11,8 +12,18 @@ class Main extends Component{
         buttonType: 'save'
     }
 
-    onTabClick = (e) => {
+    onTabClickHandler = (e) => {
         this.setState({activeTab: e.currentTarget.dataset.lable})
+    }
+
+    onSaveButtonClickHandler = (item) => () =>  {
+        this.setState({buttonType: 'saved'});
+        this.props.saveDispatch(item);
+    }
+
+    onSuggestionsClickHandler = (item) => {
+        this.setState({buttonType: 'save'})
+        this.props.selectDispatch(item);
     }
 
     render () {
@@ -21,16 +32,20 @@ class Main extends Component{
                 <h1>Мои организации</h1>
                 <div className={styles.Tabs}>
                     <div className={styles.Tabnav}>
-                        <div data-lable='new' className={`${styles.Navitem} ${this.state.activeTab==='new' ? styles.Active : ''}`} onClick={this.onTabClick}>Новая организация</div>
-                        <div data-lable='list' className={`${styles.Navitem} ${this.state.activeTab==='list' ? styles.Active : ''}`} onClick={this.onTabClick}>Сохраненные организации</div>
+                        <div data-lable='new' className={`${styles.Navitem} ${this.state.activeTab==='new' ? styles.Active : ''}`} onClick={this.onTabClickHandler}>
+                            Новая организация
+                        </div>
+                        <div data-lable='list' className={`${styles.Navitem} ${this.state.activeTab==='list' ? styles.Active : ''}`} onClick={this.onTabClickHandler}>
+                            Сохраненные организации <span>({this.props.organizationList.length})</span>
+                        </div>
                     </div>
                     <div className={styles.Tab}>
                         {this.state.activeTab==='new' ? 
                         (<>
-                            <Dadata onSuggestionSelect={this.props.onDadataSelect} title='Организация или ИП'/>
-                            <SelectedItem onClickHandler={this.props.onSaveButtonClick} item={this.props.selectedItem} buttonType={this.state.buttonType}/>
+                            <Dadata onSuggestionSelect={this.onSuggestionsClickHandler} title='Организация или ИП'/>
+                            <SelectedItem onClickHandler={this.onSaveButtonClickHandler} item={this.props.selectedItem} buttonType={this.state.buttonType}/>
                         </>) : 
-                        'Сохраненные органзации'}
+                        <SelectItemsList list={this.props.organizationList}/>}
                     </div>
                 </div>
             </main>)
@@ -39,16 +54,15 @@ class Main extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        selectedItem: state.selectedItem
+        selectedItem: state.selectedItem,
+        organizationList: state.organizationList
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDadataSelect: (item) => dispatch(actions.dadataSelectItem(item)),
-        onSaveButtonClick: (item) => () => {
-            dispatch(actions.saveOrganization(item))
-        }
+        selectDispatch: (item) => dispatch(actions.dadataSelectItem(item)),
+        saveDispatch: (item) => dispatch(actions.saveOrganization(item))
     }
 }
 

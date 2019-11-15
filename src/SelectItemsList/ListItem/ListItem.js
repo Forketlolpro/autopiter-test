@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ButtonWithImage from '../../UI/ButtonWIthImage/ButtonWIthImage';
 import styles from './ListItem.module.scss';
 
@@ -50,6 +51,16 @@ class ListItem extends Component {
         </div> 
         )
     }
+}
+
+ListItem.propsTypes = {
+    clickHandler: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+        data: PropTypes.object,
+        value: PropTypes.string,
+        unrestricted_value: PropTypes.string
+    })
+
 }
 
 export default ListItem;

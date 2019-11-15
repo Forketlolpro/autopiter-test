@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../UI/Button/Button';
 import styles from './SelectedItem.module.scss';
 import plus from '../plus.png';
@@ -35,6 +36,16 @@ const selectedItem = (props) => {
         <Button actionType={props.buttonType} onClickHandler={props.onClickHandler(props.item)}>{props.buttonType==='save' ? 'Сохранить' : 'Сохраненно'}</Button>
     </div>
     )
+}
+
+selectedItem.propTypes = {
+    onClickHandler: PropTypes.func.isRequired,
+    item: PropTypes.shape({
+        data: PropTypes.object,
+        value: PropTypes.string,
+        unrestricted_value: PropTypes.string
+    }),
+    buttonType: PropTypes.string,
 }
 
 export default selectedItem;

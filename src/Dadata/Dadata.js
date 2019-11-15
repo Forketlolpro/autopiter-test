@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import DadataResult from './DadataResult/DadataResult';
+import PropTypes from 'prop-types';
 import axios from '../axios-instance';
 import styles from './Dadata.module.scss'
 
@@ -65,6 +66,11 @@ class Dadata extends Component {
                     { this.state.suggestions && this.state.suggestions.length && !this.state.closed ? <DadataResult data = {this.state.suggestions} onItemClick={this.onSuggestItemClick}/> : null}
                 </div>)
     }
+}
+
+Dadata.propTypes = {
+    title: PropTypes.string,
+    onSuggestionSelect: PropTypes.func.isRequired
 }
 
 export default Dadata;

@@ -19,6 +19,12 @@ export default (state=initialState, action) => {
                 ...state,
                 organizationList: newArray
             }
+        case actions.REMOVE_ORGANIZATION:
+            let array = state.organizationList;
+            return {
+                ...state,
+                organizationList: [...array.slice(0, action.index), ...array.slice(action.index + 1)]
+            }
         default:
             return state;
     }

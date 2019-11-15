@@ -14,3 +14,10 @@ export const saveOrganization = (item) => {
     }
 }
 
+export const removeOrganization = (index) => {
+    return {
+        type: actions.REMOVE_ORGANIZATION,
+        index: index
+    }
+}
+

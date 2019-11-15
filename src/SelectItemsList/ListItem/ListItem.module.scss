@@ -1,0 +1,18 @@
+.Item {
+    display: flex;
+    flex-direction: column;
+}
+
+.Topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: 18px;
+    }
+
+    img {
+        cursor: pointer;
+    }
+}

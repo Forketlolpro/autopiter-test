@@ -26,6 +26,11 @@ class Main extends Component{
         this.props.selectDispatch(item);
     }
 
+    onRemoveItemClickHandler = (index) => () =>  {
+        console.log(index);
+        this.props.removeDispatch(index);
+    }
+
     render () {
         return (
             <main className={styles.Main}>
@@ -45,7 +50,7 @@ class Main extends Component{
                             <Dadata onSuggestionSelect={this.onSuggestionsClickHandler} title='Организация или ИП'/>
                             <SelectedItem onClickHandler={this.onSaveButtonClickHandler} item={this.props.selectedItem} buttonType={this.state.buttonType}/>
                         </>) : 
-                        <SelectItemsList list={this.props.organizationList}/>}
+                        <SelectItemsList clickHandler={this.onRemoveItemClickHandler} list={this.props.organizationList}/>}
                     </div>
                 </div>
             </main>)
@@ -62,7 +67,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         selectDispatch: (item) => dispatch(actions.dadataSelectItem(item)),
-        saveDispatch: (item) => dispatch(actions.saveOrganization(item))
+        saveDispatch: (item) => dispatch(actions.saveOrganization(item)),
+        removeDispatch: (index) => dispatch(actions.removeOrganization(index))
     }
 }
 

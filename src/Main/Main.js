@@ -27,7 +27,6 @@ class Main extends Component{
     }
 
     onRemoveItemClickHandler = (index) => () =>  {
-        console.log(index);
         this.props.removeDispatch(index);
     }
 

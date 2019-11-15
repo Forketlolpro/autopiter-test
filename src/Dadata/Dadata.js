@@ -25,8 +25,11 @@ class Dadata extends Component {
     }
 
     async fetchData(value) {
-        const res = await axios.post('/', { query: value });
-        this.setState({ suggestions: res.data.suggestions });
+        try {
+            const res = await axios.post('/', { query: value });
+            this.setState({ suggestions: res.data.suggestions });
+        } catch (e) {
+        }
     }
 
     onInputHandler = (e) => {

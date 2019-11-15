@@ -18,7 +18,7 @@ const selectedItem = (props) => {
                 <strong>Юридический адрес</strong>
                 <span>{props.item.data.address.value}</span>
                 <strong>Гениральный директор</strong>
-                <span>{props.item.data.management.name}</span>
+                <span>{props.item.data.management ? props.item.data.management.name : 'Отсутствует'}</span>
             </div>
             <div className={styles.Organizationdata}>
                 <div>

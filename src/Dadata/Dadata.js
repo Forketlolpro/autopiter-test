@@ -9,7 +9,6 @@ class Dadata extends Component {
         this.state = {
             inputValue: '',
             suggestions: null,
-            selected: null,
             closed: false
         }
         document.addEventListener('mousedown', this.checkOuterClick, false)
@@ -41,17 +40,19 @@ class Dadata extends Component {
     onSuggestItemClick = (id) => {
         this.setState((state)=>{
             return {
-                selected: state.suggestions[id],
                 inputValue: state.suggestions[id].value,
                 closed: true
             }
         })
+
+        this.props.onSuggestionSelect(this.state.suggestions[id]);
     }
 
     render () {
-        return (<div ref={componentNode => this.componentNode = componentNode}>
+        return (<div className={styles.Dadata} ref={componentNode => this.componentNode = componentNode}>
                     <p className={styles.Title}>{this.props.title}</p>
                     <input name='dadataInput'
+                        autocomplete="off"
                         value={this.state.inputValue}
                         className={styles.Input}
                         type='text'

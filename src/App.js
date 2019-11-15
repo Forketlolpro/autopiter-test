@@ -11,7 +11,6 @@ function App() {
       <Layout>
         <Main/>
       </Layout>
-      {/* <Dadata title='Организация или ИП'/> */}
     </div>
   );
 }

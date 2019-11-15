@@ -1,0 +1,1 @@
+export const DADATA_SELECT_ITEM = 'DADATA_SELECT_ITEM';

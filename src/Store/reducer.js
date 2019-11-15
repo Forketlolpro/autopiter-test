@@ -1,7 +1,8 @@
 import * as actions from './actionTypes';
 
 const initialState = {
-    selectedItem: null
+    selectedItem: null,
+    organizationList: []
 }
 
 export default (state=initialState, action) => {
@@ -10,6 +11,13 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 selectedItem: action.item
+            }
+        case actions.SAVE_ORGANIZATION:
+            let newArray = state.organizationList.slice()
+            newArray.splice(action.index, 0, action.item)
+            return {
+                ...state,
+                organizationList: newArray
             }
         default:
             return state;

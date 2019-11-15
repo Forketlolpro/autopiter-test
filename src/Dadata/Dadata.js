@@ -52,7 +52,7 @@ class Dadata extends Component {
         return (<div className={styles.Dadata} ref={componentNode => this.componentNode = componentNode}>
                     <p className={styles.Title}>{this.props.title}</p>
                     <input name='dadataInput'
-                        autocomplete="off"
+                        autoComplete="off"
                         value={this.state.inputValue}
                         className={styles.Input}
                         type='text'

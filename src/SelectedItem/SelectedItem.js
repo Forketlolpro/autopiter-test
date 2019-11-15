@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 import styles from './SelectedItem.module.scss';
 import plus from '../plus.png';
 
@@ -31,7 +32,7 @@ const selectedItem = (props) => {
                 </div>
             </div>
         </div>
-        <button>Сохранить</button>
+        <Button actionType={props.buttonType} onClickHandler={props.onClickHandler(props.item)}>Сохранить</Button>
     </div>
     )
 }

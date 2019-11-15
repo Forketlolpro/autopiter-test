@@ -7,7 +7,8 @@ import styles from './Main.module.scss'
 
 class Main extends Component{
     state= {
-        activeTab: 'new'
+        activeTab: 'new',
+        buttonType: 'save'
     }
 
     onTabClick = (e) => {
@@ -25,7 +26,10 @@ class Main extends Component{
                     </div>
                     <div className={styles.Tab}>
                         {this.state.activeTab==='new' ? 
-                        (<><Dadata onSuggestionSelect={this.props.onDadataSelect} title='Организация или ИП'/><SelectedItem item={this.props.selectedItem}/></>) : 
+                        (<>
+                            <Dadata onSuggestionSelect={this.props.onDadataSelect} title='Организация или ИП'/>
+                            <SelectedItem onClickHandler={this.props.onSaveButtonClick} item={this.props.selectedItem} buttonType={this.state.buttonType}/>
+                        </>) : 
                         'Сохраненные органзации'}
                     </div>
                 </div>
@@ -41,7 +45,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDadataSelect: (item) => dispatch(actions.dadataSelectItem(item))
+        onDadataSelect: (item) => dispatch(actions.dadataSelectItem(item)),
+        onSaveButtonClick: (item) => () => {
+            dispatch(actions.saveOrganization(item))
+        }
     }
 }
 

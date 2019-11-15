@@ -6,3 +6,11 @@ export const dadataSelectItem = (item) => {
         item: item
     }
 }
+
+export const saveOrganization = (item) => {
+    return {
+        type: actions.SAVE_ORGANIZATION,
+        item: item
+    }
+}
+
